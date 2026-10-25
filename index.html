@@ -117,11 +117,9 @@ section{padding:64px 0}
 .lead-note{text-align:center;margin-top:26px;font-size:.9rem;color:var(--ink-soft)}
 
 /* contact */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.contact-grid{display:grid;grid-template-columns:1fr;gap:40px;max-width:700px}
 .contact-item{display:flex;gap:14px;margin-bottom:20px}
 .contact-item .ic{width:38px;height:38px;border-radius:50%;background:var(--pine);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem}
-.map-box{border-radius:var(--radius);background:repeating-linear-gradient(0deg,#e4dccd 0 1px,transparent 1px 22px),repeating-linear-gradient(90deg,#e4dccd 0 1px,transparent 1px 22px),var(--paper);border:1px solid var(--line);min-height:220px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-weight:600}
-@media(max-width:760px){.contact-grid{grid-template-columns:1fr}}
 
 footer{background:#241f1c;color:#cfc7ba;padding:40px 0 calc(28px + env(safe-area-inset-bottom,0px))}
 footer .container{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:center}
@@ -301,17 +299,15 @@ body.lang-sq [data-i18n-en]{display:none}
     <div class="section-head">
       <div class="tag-eyebrow" data-i18n-sq>Kush jemi</div>
       <div class="tag-eyebrow" data-i18n-en>Who we are</div>
-      <h2 data-i18n-sq>Bordi Themelues (2025)</h2>
-      <h2 data-i18n-en>Founding Board (2025)</h2>
+      <h2 data-i18n-sq>Bordi i Drejtorëve</h2>
+      <h2 data-i18n-en>Board of Directors</h2>
     </div>
     <div class="lead-grid">
-      <div class="lead-card"><div class="lead-photo">MA</div><h4>Musa Avdyli</h4><span data-i18n-sq>President</span><span data-i18n-en>President</span></div>
+      <div class="lead-card"><div class="lead-photo">FH</div><h4>Florim Haxhiu</h4><span data-i18n-sq>President</span><span data-i18n-en>President</span></div>
       <div class="lead-card"><div class="lead-photo">BP</div><h4>Burim Preniqi</h4><span data-i18n-sq>Arkatar</span><span data-i18n-en>Treasurer</span></div>
       <div class="lead-card"><div class="lead-photo">BB</div><h4>Besar Bacaj</h4><span data-i18n-sq>Sekretar</span><span data-i18n-en>Clerk</span></div>
-      <div class="lead-card"><div class="lead-photo">FH</div><h4>Florim Haxhiu</h4><span data-i18n-sq>Drejtor</span><span data-i18n-en>Director</span></div>
+      <div class="lead-card"><div class="lead-photo">BM</div><h4>Bujar Mollopolci</h4><span data-i18n-sq>Drejtor/Mësues</span><span data-i18n-en>Director/Teacher</span></div>
     </div>
-    <p class="lead-note" data-i18n-sq>Bordi aktual mund të jetë përditësuar që nga zgjedhjet e Shkurtit 2026.</p>
-    <p class="lead-note" data-i18n-en>The current board may have been updated since the February 2026 election.</p>
   </div>
 </section>
 
@@ -324,10 +320,8 @@ body.lang-sq [data-i18n-en]{display:none}
       <h2 data-i18n-en>Contact</h2>
       <div class="contact-item"><div class="ic">@</div><div><strong data-i18n-sq>Email</strong><strong data-i18n-en>Email</strong><p style="margin:0"><a href="mailto:Aaccwm@hotmail.com">Aaccwm@hotmail.com</a></p></div></div>
       <div class="contact-item"><div class="ic">☎</div><div><strong data-i18n-sq>Telefon</strong><strong data-i18n-en>Phone</strong><p style="margin:0"><a href="tel:+14135570021">413-557-0021</a></p></div></div>
-      <div class="contact-item"><div class="ic">⚑</div><div><strong data-i18n-sq>Lokacioni</strong><strong data-i18n-en>Location</strong><p style="margin:0">270 Main St, Agawam, MA 01001</p></div></div>
+      <div class="contact-item"><div class="ic">⚑</div><div><strong data-i18n-sq>Lokacioni</strong><strong data-i18n-en>Location</strong><p style="margin:0">Agawam, MA</p></div></div>
     </div>
-    <div class="map-box" data-i18n-sq>Harta së shpejti</div>
-    <div class="map-box" data-i18n-en>Map coming soon</div>
   </div>
 </section>
 
