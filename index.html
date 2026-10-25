@@ -45,12 +45,17 @@ nav.links a:hover{color:var(--red)}
 .lang-toggle{display:flex;border:1.5px solid var(--ink);border-radius:999px;overflow:hidden}
 .lang-toggle button{border:0;background:transparent;padding:6px 13px;font-family:'Karla',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer;color:var(--ink)}
 .lang-toggle button.active{background:var(--ink);color:#fff}
-.burger{display:none;background:none;border:0;font-size:1.6rem;cursor:pointer;color:var(--ink)}
-@media(max-width:860px){
-  nav.links{position:fixed;top:69px;left:0;right:0;bottom:0;background:var(--paper);flex-direction:column;padding:30px 24px;gap:22px;transform:translateX(100%);transition:transform .25s ease;overflow-y:auto}
-  nav.links.open{transform:translateX(0)}
+.burger{display:none;background:none;border:0;padding:8px;font-size:1.5rem;line-height:1;cursor:pointer;color:var(--ink);border-radius:8px}
+.burger:focus-visible,.lang-toggle button:focus-visible,nav.links a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+@media(max-width:980px){
+  .nav-actions .btn-donate{display:none}
+  nav.links{position:absolute;top:100%;left:0;right:0;background:var(--paper);flex-direction:column;align-items:stretch;padding:8px 24px calc(16px + env(safe-area-inset-bottom,0px));gap:0;box-shadow:0 12px 18px rgba(42,35,32,.12);transform:translateY(-8px);opacity:0;visibility:hidden;pointer-events:none;transition:transform .2s ease,opacity .2s ease,visibility .2s ease;max-height:calc(100dvh - 76px);overflow-y:auto}
+  nav.links.open{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto}
+  nav.links a{padding:13px 0;border-bottom:1px solid var(--line)}
   .burger{display:block}
 }
+@media(max-width:600px){.brand-text small{display:none}}
+@media(prefers-reduced-motion:reduce){nav.links{transition:none}}
 
 /* hero */
 .hero{padding:70px 0 60px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
@@ -151,7 +156,7 @@ body.lang-sq [data-i18n-en]{display:none}
       </div>
       <a class="btn btn-donate" href="https://www.zeffy.com/en-US/donation-form/donacionet-per-albanian-american-cultural-center-of-wmass" target="_blank" rel="noopener" data-i18n-sq>Dhuro</a>
       <a class="btn btn-donate" href="https://www.zeffy.com/en-US/donation-form/donacionet-per-albanian-american-cultural-center-of-wmass" target="_blank" rel="noopener" data-i18n-en>Donate</a>
-      <button class="burger" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+      <button class="burger" id="menuButton" type="button" aria-label="Hap menunë" aria-expanded="false" aria-controls="navLinks" onclick="toggleMenu()"><span aria-hidden="true">☰</span></button>
     </div>
   </div>
 </header>
@@ -335,13 +340,47 @@ body.lang-sq [data-i18n-en]{display:none}
 </footer>
 
 <script>
+function toggleMenu(){
+  const menu = document.getElementById('navLinks');
+  const button = document.getElementById('menuButton');
+  const isOpen = menu.classList.toggle('open');
+  button.setAttribute('aria-expanded', String(isOpen));
+  updateMenuLabel();
+}
+
+function closeMenu(){
+  const menu = document.getElementById('navLinks');
+  const button = document.getElementById('menuButton');
+  menu.classList.remove('open');
+  button.setAttribute('aria-expanded', 'false');
+  updateMenuLabel();
+}
+
+function updateMenuLabel(){
+  const isOpen = document.getElementById('menuButton').getAttribute('aria-expanded') === 'true';
+  const isAlbanian = document.body.classList.contains('lang-sq');
+  document.getElementById('menuButton').setAttribute(
+    'aria-label',
+    isAlbanian ? (isOpen ? 'Mbyll menunë' : 'Hap menunë') : (isOpen ? 'Close menu' : 'Open menu')
+  );
+}
+
 function setLang(l){
   document.body.classList.toggle('lang-sq', l==='sq');
   document.body.classList.toggle('lang-en', l==='en');
   document.getElementById('btnSq').classList.toggle('active', l==='sq');
   document.getElementById('btnEn').classList.toggle('active', l==='en');
   document.documentElement.lang = l;
+  updateMenuLabel();
 }
+
+document.querySelectorAll('#navLinks a').forEach(link => link.addEventListener('click', closeMenu));
+document.addEventListener('keydown', event => {
+  if(event.key === 'Escape') closeMenu();
+});
+window.addEventListener('resize', () => {
+  if(window.innerWidth > 980) closeMenu();
+});
 </script>
 </body>
 </html>
